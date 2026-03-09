@@ -5,6 +5,7 @@ import { connectDB, disconnectDB } from "./config/db.js";
 // Import routers
 import movieRoutes from "./routes/movieRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
+import watchlistRoutes from "./routes/watchlistRoutes.js";
 
 config();
 await connectDB();
@@ -17,6 +18,7 @@ app.use(express.urlencoded({ extended: true }));
 //routes
 app.use("/movies", movieRoutes);
 app.use("/auth", authRoutes);
+app.use("/watchlist", watchlistRoutes);
 
 const PORT = 5001;
 const server = app.listen(PORT, () => {
