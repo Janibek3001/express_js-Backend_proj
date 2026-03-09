@@ -1,7 +1,7 @@
 import { prisma } from "../config/db.js";
 
 const addToWatchList = async (req, res) => {
-  const { movieId, status, rating, notes } = req.body;
+  const { movieId, status, rating, notes, userId } = req.body;
 
   // Verify movie
   const movie = await prisma.movie.findUnique({
@@ -21,7 +21,7 @@ const addToWatchList = async (req, res) => {
     },
   });
 
-  if (!existingWatchlist) {
+  if (existingWatchlist) {
     res.status(404).json({ message: "Movie already in the watchlist" });
   }
 
